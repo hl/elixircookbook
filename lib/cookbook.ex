@@ -1,0 +1,2 @@
+defmodule Cookbook do
+end
