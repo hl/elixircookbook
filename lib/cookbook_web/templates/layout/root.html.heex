@@ -9,12 +9,13 @@
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <style>
       <%= Makeup.stylesheet(:paraiso_dark_style, "makeup") %>
+      .makeup {display: block}
     </style>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
   <body class="h-full">
     <header class="container mx-auto px-4">
-      <h1 class="text-2xl my-10"><span class="text-violet-600">Elixir Cookbook</span> is a collection of recipes made by the community for the <a class="text-violet-600 underline" href="https://elixir-lang.org" target="_blank">Elixir language</a>.</h1>
+      <h1 class="text-2xl my-10"><a href="/" class="text-violet-600">Elixir Cookbook</a> is a collection of recipes made by the community for the <a class="text-violet-600 underline" href="https://elixir-lang.org" target="_blank">Elixir language</a>.</h1>
     </header>
     <%= @inner_content %>
   </body>

@@ -1,1 +1,11 @@
 <h1 class="text-xl"><%= @page.title %></h1>
+<%= link @page.docs, to: @page.docs, target: "_blank", class: "text-violet-600 underline" %>
+
+<h2>Examples</h2>
+
+<%= for example <- @examples do %>
+<div class="py-10 border-black">
+  <h3><%= example.title %> by <%= link example.github_username, to: "https://github.com/#{example.github_username}", target: "_blank", class: "text-violet-600 underline" %></h3>
+  <%= raw example.body %>
+</div>
+<% end %>

@@ -8,4 +8,8 @@ defmodule Cookbook.Examples do
   @examples Enum.sort_by(@examples, & &1.title)
 
   def all_examples, do: @examples
+
+  def examples_by_prefix(prefix) do
+    Enum.filter(all_examples(), &String.starts_with?(&1.id, prefix))
+  end
 end

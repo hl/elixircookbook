@@ -19,7 +19,7 @@ defmodule Cookbook.Example do
 
     livebook_contents =
       filename
-      |> String.replace(".md", ".livemd")
+      |> String.replace(".markdown", ".livemd")
       |> File.read!()
 
     body =
