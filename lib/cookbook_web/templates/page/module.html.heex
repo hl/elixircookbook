@@ -1,2 +1,10 @@
 <h1 class="text-xl"><%= @page.title %></h1>
 <%= link @page.docs, to: @page.docs, target: "_blank", class: "text-violet-600 underline" %>
+
+<h2>Functions</h2>
+
+<ul>
+<%= for {page_id, page} <- @functions do %>
+  <li><%= link page.title, to: Routes.page_path(@conn, :show, String.split(page_id, "/")), class: "text-violet-600 underline" %></li>
+<% end %>
+</ul>

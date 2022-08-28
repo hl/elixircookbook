@@ -7,12 +7,19 @@ defmodule Cookbook.Pages do
 
   defmodule NotFoundError, do: defexception([:message, plug_status: 404])
 
-  @pages Enum.sort_by(@pages, & &1.title)
+  @pages Map.new(@pages, &{&1.id, &1})
 
   def all_pages, do: @pages
 
   def get_page_by_id!(id) do
-    Enum.find(all_pages(), &(&1.id == id)) ||
+    Map.get(all_pages(), id) ||
       raise NotFoundError, "page with id=#{id} not found"
+  end
+
+  def get_functions(id) do
+    Enum.filter(all_pages(), fn
+      {page_id, %{type: :function}} -> String.starts_with?(page_id, id)
+      _page -> false
+    end)
   end
 end

@@ -15,11 +15,11 @@ defmodule CookbookWeb.PageController do
 
     case page.type do
       :module ->
-        render(conn, "module.html", page: page)
+        functions = Pages.get_functions(id)
+        render(conn, "module.html", page: page, functions: functions)
 
       :function ->
         examples = Examples.examples_by_prefix(id)
-
         render(conn, "function.html", page: page, examples: examples)
     end
   end

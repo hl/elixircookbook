@@ -1,7 +1,7 @@
 <h2>Overview</h2>
 
 <ul>
-<%= for page <- @pages do %>
+<%= for {page_id, page} <- @pages do %>
   <li><%= link page.title, to: Routes.page_path(@conn, :show, String.split(page.id, "/")), class: "text-violet-600 underline" %></li>
 <% end %>
 </ul>
