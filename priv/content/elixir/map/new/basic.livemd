@@ -1,0 +1,9 @@
+# Build a map for faster look up
+
+items = [
+  %{item_id: 1, title: "Item 1"},
+  %{item_id: 2, title: "Item 2"},
+  %{item_id: 3, title: "Item 3"}
+]
+
+Map.new(items, &{&1.item_id, &1})

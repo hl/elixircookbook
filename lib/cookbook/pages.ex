@@ -11,6 +11,13 @@ defmodule Cookbook.Pages do
 
   def all_pages, do: @pages
 
+  def all_modules do
+    Enum.filter(@pages, fn
+      {_page_id, %{type: :module}} -> true
+      _page -> false
+    end)
+  end
+
   def get_page_by_id!(id) do
     Map.get(all_pages(), id) ||
       raise NotFoundError, "page with id=#{id} not found"

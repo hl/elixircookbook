@@ -14,7 +14,7 @@ defmodule Cookbook.Example do
       filename
       |> Path.rootname()
       |> Path.split()
-      |> Enum.reject(&(&1 in ~w/priv content examples/))
+      |> Enum.reject(&(&1 in ~w/priv content/))
       |> Enum.join("/")
 
     livebook_contents =

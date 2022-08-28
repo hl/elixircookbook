@@ -17,7 +17,8 @@ defmodule CookbookWeb.Router do
   scope "/", CookbookWeb do
     pipe_through :browser
 
-    get "/cookbook/*path", PageController, :show
+    get "/livebook/*path", PageController, :livebook
+    get "/recipes/*path", PageController, :show
 
     get "/", PageController, :index
   end

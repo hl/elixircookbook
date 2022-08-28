@@ -5,11 +5,13 @@ defmodule Cookbook.Examples do
     as: :examples,
     highlighters: [:makeup_elixir, :makeup_erlang]
 
-  @examples Enum.sort_by(@examples, & &1.title)
+  defmodule NotFoundError, do: defexception([:message, plug_status: 404])
 
-  def all_examples, do: @examples
+  def all_examples, do: Map.new(@examples, &{&1.id, &1})
 
   def examples_by_prefix(prefix) do
-    Enum.filter(all_examples(), &String.starts_with?(&1.id, prefix))
+    Enum.filter(all_examples(), fn {example_id, _example} ->
+      String.starts_with?(example_id, prefix)
+    end)
   end
 end

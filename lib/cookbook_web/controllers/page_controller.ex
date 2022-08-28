@@ -5,7 +5,7 @@ defmodule CookbookWeb.PageController do
   alias Cookbook.Examples
 
   def index(conn, _params) do
-    pages = Pages.all_pages()
+    pages = Pages.all_modules()
     render(conn, "index.html", pages: pages)
   end
 
@@ -22,5 +22,11 @@ defmodule CookbookWeb.PageController do
         examples = Examples.examples_by_prefix(id)
         render(conn, "function.html", page: page, examples: examples)
     end
+  end
+
+  def livebook(conn, %{"path" => path}) do
+    id = Enum.join(path, "/")
+    file = File.read!(Application.app_dir(:cookbook, "priv/content/" <> id))
+    send_resp(conn, 200, file)
   end
 end

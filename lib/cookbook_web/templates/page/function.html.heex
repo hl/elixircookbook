@@ -1,11 +1,17 @@
-<h1 class="text-xl"><%= @page.title %></h1>
+<h1 class="text-2xl"><%= @page.title %></h1>
 <%= link @page.docs, to: @page.docs, target: "_blank", class: "text-violet-600 underline" %>
+<%= raw @page.body %>
 
-<h2>Examples</h2>
+<h2 class="text-xl text-violet-600 pt-10">Examples</h2>
 
-<%= for example <- @examples do %>
-<div class="py-10 border-black">
+<%= for {example_id, example} <- @examples do %>
+<div class="my-5 p-5 bg-violet-50">
   <h3><%= example.title %> by <%= link example.github_username, to: "https://github.com/#{example.github_username}", target: "_blank", class: "text-violet-600 underline" %></h3>
   <%= raw example.body %>
+  
+  <%= link to: "https://livebook.dev/run?url=" <> Routes.page_url(@conn, :livebook, String.split(example_id, "/")) <> ".livemd" do %>
+  <img class="pt-5" src="https://livebook.dev/badge/v1/blue.svg" alt="Run in Livebook" />
+  <% end %>
+
 </div>
 <% end %>
