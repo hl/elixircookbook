@@ -1,0 +1,12 @@
+```elixir
+# Basic usage of with/1
+
+items = %{
+  1 => %{title: "Item 1"},
+  2 => %{title: "Item 2"}
+}
+
+with {:ok, item} <- Map.fetch(items, item_id) do
+  item
+end
+```

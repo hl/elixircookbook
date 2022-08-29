@@ -52,7 +52,7 @@ config :cookbook, CookbookWeb.Endpoint,
       ~r"priv/gettext/.*(po)$",
       ~r"lib/cookbook_web/(live|views)/.*(ex)$",
       ~r"lib/cookbook_web/templates/.*(eex)$",
-      ~r"content/*/.*(md)$"
+      ~r"content/*/.*(md|markdown|livemd)$"
     ]
   ]
 

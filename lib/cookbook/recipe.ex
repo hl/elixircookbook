@@ -1,4 +1,4 @@
-defmodule Cookbook.Example do
+defmodule Cookbook.Recipe do
   use TypedStruct
 
   typedstruct do
@@ -9,7 +9,7 @@ defmodule Cookbook.Example do
     field :body, String.t(), enforce: true
   end
 
-  def build(filename, attrs, _body) do
+  def build(filename, attrs, body) do
     id =
       filename
       |> Path.rootname()
@@ -22,11 +22,11 @@ defmodule Cookbook.Example do
       |> String.replace(".markdown", ".livemd")
       |> File.read!()
 
-    body =
-      ("```elixir\n" <> livebook_contents <> "\n```")
+    livebook_body =
+      livebook_contents
       |> Earmark.as_html!()
       |> NimblePublisher.Highlighter.highlight()
 
-    struct!(__MODULE__, [id: id, body: body] ++ Map.to_list(attrs))
+    struct!(__MODULE__, [id: id, body: body <> livebook_body] ++ Map.to_list(attrs))
   end
 end

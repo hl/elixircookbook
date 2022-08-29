@@ -1,3 +1,4 @@
+```elixir
 # Build a map for faster look up
 
 items = [
@@ -7,3 +8,4 @@ items = [
 ]
 
 Map.new(items, &{&1.item_id, &1})
+```
