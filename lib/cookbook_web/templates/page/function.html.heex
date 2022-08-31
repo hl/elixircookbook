@@ -9,7 +9,7 @@
   <h3><%= recipe.title %> by <%= link recipe.github_username, to: "https://github.com/#{recipe.github_username}", target: "_blank", class: "text-violet-600 underline" %></h3>
   <%= raw recipe.body %>
   
-  <%= link to: "https://livebook.dev/run?url=" <> Routes.page_url(@conn, :livebook, String.split(recipe_id, "/")) <> ".livemd" do %>
+  <%= link to: "https://livebook.dev/run?" <> URI.encode_query(%{url: Routes.page_url(@conn, :livebook, String.split(recipe_id, "/")) <> ".livemd"}), target: "_blank" do %>
   <img class="pt-5" src="https://livebook.dev/badge/v1/blue.svg" alt="Run in Livebook" />
   <% end %>
 
